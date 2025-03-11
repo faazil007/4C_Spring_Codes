@@ -1,0 +1,176 @@
+Sure! Here's a detailed explanation of each LISP program along with the code.
+
+---
+
+## **Question 1: Check if a number is positive, negative, or zero**
+### **Explanation:**
+- This function takes a number as input.
+- It checks if the number is greater than zero (`> num 0`). If true, it prints "The number is positive."
+- If the number is not greater than zero, it checks if it is less than zero (`< num 0`). If true, it prints "The number is negative."
+- If neither condition is met, the number must be zero, so it prints "The number is zero."
+
+### **Code:**
+```lisp
+(defun check-number (num)
+  (if (> num 0)
+      (format t "The number is positive")
+      (if (< num 0)
+          (format t "The number is negative")
+          (format t "The number is zero"))))
+```
+
+---
+
+## **Question 2: Check if a number is even or odd**
+### **Explanation:**
+- The function takes a number as input.
+- It uses the built-in function `evenp`, which checks if a number is even.
+- If the number is even, it prints "The number is even."
+- Otherwise, it prints "The number is odd."
+
+### **Code:**
+```lisp
+(defun even-or-odd (num)
+  (if (evenp num)
+      (format t "The number is even")
+      (format t "The number is odd")))
+```
+
+---
+
+## **Question 3: Print odd numbers from 1 to 15 using `dotimes` loop**
+### **Explanation:**
+- `dotimes` is a loop that runs a specific number of times.
+- We set the limit as `16` because `dotimes` runs from `0` to `n-1`.
+- Inside the loop, we check if the number is odd using `oddp`.
+- If the number is odd, we print it.
+
+### **Code:**
+```lisp
+(dotimes (i 16)
+  (if (oddp i) (format t "~d " i)))
+```
+
+---
+
+## **Question 4: Print even numbers from 2 to 10 using `loop` construct**
+### **Explanation:**
+- The `loop` construct is used to iterate from `2` to `10`, increasing by `2` each time.
+- Inside the loop, we print the current number.
+
+### **Code:**
+```lisp
+(loop for i from 2 to 10 by 2 do (format t "~d " i))
+```
+
+---
+
+## **Question 5: Print each element of the list `(1 2 3 4 5)` using `dolist`**
+### **Explanation:**
+- `dolist` iterates over each element of a list.
+- Inside the loop, we print the current element.
+
+### **Code:**
+```lisp
+(dolist (x '(1 2 3 4 5))
+  (format t "~d " x))
+```
+
+---
+
+## **Question 6: Function to calculate the square of a number**
+### **Explanation:**
+- This function takes a number as input.
+- It returns the square of the number using `(* x x)`, which multiplies the number by itself.
+
+### **Code:**
+```lisp
+(defun square (x)
+  (* x x))
+```
+
+---
+
+## **Question 7: Factorial using recursion**
+### **Explanation:**
+- The factorial of a number `n` is defined as:
+  \[
+  n! = n \times (n-1)!
+  \]
+- The base case is `n <= 1`, where we return `1`.
+- Otherwise, we recursively call `factorial` with `n-1` and multiply it by `n`.
+
+### **Code:**
+```lisp
+(defun factorial (n)
+  (if (<= n 1)
+      1
+      (* n (factorial (- n 1)))))
+```
+
+---
+
+## **Question 8: Find the length of a list without using the built-in `length` function**
+### **Explanation:**
+- If the list is empty (`null lst`), return `0` (base case).
+- Otherwise, add `1` to the length of the rest of the list (`cdr lst`).
+
+### **Code:**
+```lisp
+(defun list-length (lst)
+  (if (null lst)
+      0
+      (+ 1 (list-length (cdr lst)))))
+```
+
+---
+
+## **Question 9: Check if an element exists in a list**
+### **Explanation:**
+- We use `member`, which checks if an element is in a list.
+- If the element is found, print "Element exists in the list."
+- Otherwise, print "Element does not exist in the list."
+
+### **Code:**
+```lisp
+(defun element-exists (elem lst)
+  (if (member elem lst)
+      (format t "Element exists in the list")
+      (format t "Element does not exist in the list")))
+```
+
+---
+
+## **Question 10: Find the largest of three numbers using nested `if-else`**
+### **Explanation:**
+- First, we compare `a` and `b`. If `a > b`, we check if `a > c`. If true, `a` is the largest, else `c` is the largest.
+- If `b > a`, we check if `b > c`. If true, `b` is the largest, otherwise `c` is the largest.
+
+### **Code:**
+```lisp
+(defun largest-of-three (a b c)
+  (if (> a b)
+      (if (> a c)
+          a
+          c)
+      (if (> b c)
+          b
+          c)))
+```
+
+---
+
+## **Question 11: Create a list of squares of numbers from 1 to 5 using `loop` construct with `collect`**
+### **Explanation:**
+- The `loop` construct iterates from `1` to `5`.
+- `collect` is used to create a list of the squared numbers.
+
+### **Code:**
+```lisp
+(defun squares-list ()
+  (loop for i from 1 to 5 collect (* i i)))
+```
+
+---
+
+Let me know if anything needs more clarification! 😊
