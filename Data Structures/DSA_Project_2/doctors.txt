@@ -1,0 +1,4 @@
+Doctor{ID=100, Name='Saim', Speciality='Cardio', Available=true}
+Doctor{ID=101, Name='Raghib', Speciality='Surgical', Available=true}
+Doctor{ID=100, Name='saim', Speciality='cardio', Available=true}
+Doctor{ID'100',Name='Saim', Speciality='Cardio', Available=true}

@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="javafx-base-24-ea+5-linux">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../../Program Files/Java/jdk-21/lib/javafx-base-24-ea+5-linux.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../Program Files/Java/jdk-21/lib/javafx-controls-24-ea+5-linux.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../Program Files/Java/jdk-21/lib/javafx-graphics-24-ea+5-linux.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../Program Files/Java/jdk-21/lib/javafx-media-24-ea+5-linux.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../Program Files/Java/jdk-21/lib/javafx-properties-1.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../Program Files/Java/jdk-21/lib/javafx-swing-24-ea+5-linux.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../Program Files/Java/jdk-21/lib/javafx-swt.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../Program Files/Java/jdk-21/lib/javafx-web-24-ea+5-linux.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../Program Files/Java/jdk-21/lib/jrt-fs.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

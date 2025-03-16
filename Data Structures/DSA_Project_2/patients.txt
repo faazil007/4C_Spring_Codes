@@ -1,0 +1,3 @@
+Patient{ID=100, Name='Abdullah', Age=54, Contact='03445843904', Ailment='Surgical'}
+Patient{ID=101, Name='Jabbar', Age=23, Contact='03075056368', Ailment='Cardio'}
+Patient{ID=10, Name='abdullah', Age=23, Contact='11133', Ailment='asd'}
