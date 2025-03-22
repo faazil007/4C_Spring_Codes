@@ -1,0 +1,12 @@
+# Some Basic Functions used in Python
+- **clear()** – Removes all items from the dictionary, making it empty.
+- **copy()** – Creates and returns a copy of the dictionary.
+- **fromkeys()** – Creates a new dictionary with specified keys and assigns them a default value.
+- **get()** – Retrieves the value of a key. If the key doesn’t exist, it returns `None` (or a specified default value).
+- **items()** – Returns a view object containing key-value pairs as tuples.
+- **keys()** – Returns a view object containing all dictionary keys.
+- **pop()** – Removes the specified key and returns its value. If the key doesn’t exist, it raises an error.
+- **popitem()** – Removes and returns the last key-value pair from the dictionary.
+- **setdefault()** – Returns the value of a key. If the key doesn’t exist, it adds the key with a specified default value.
+- **update()** – Updates the dictionary with key-value pairs from another dictionary or an iterable.
+- **values()** – Returns a view object containing all values in the dictionary.
