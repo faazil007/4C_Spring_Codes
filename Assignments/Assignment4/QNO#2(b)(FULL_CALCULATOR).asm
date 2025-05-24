@@ -107,7 +107,7 @@
             
                 CMP BL,'1'
                 JE DECIMAL_ADDITION
-            
+             
                 CMP BL,'2'
                 JE DECIMAL_SUBTRACTION
             
@@ -346,10 +346,11 @@
                 CMP BL,'5'
                 JE BINARY_CHECKING_QUOTIENT
             
+            
                 CMP BL,'6'
                 JE START
             
-                JNE ERROR
+                JNE ERROR_BIN
              
                 BINARY_ADDITION:
                 MOV DX, OFFSET NEWLINE
@@ -1068,6 +1069,18 @@
                 CALL STRING_DISPLAY
                 CALL CHARACTER_INPUT
                 JMP DECIMAL
+
+             ERROR_BIN:
+                MOV DX, OFFSET MSG3
+                CALL STRING_DISPLAY
+                MOV DX, OFFSET NEWLINE
+                CALL STRING_DISPLAY
+                MOV DX, OFFSET MSG5
+                CALL STRING_DISPLAY
+                MOV DX, OFFSET NEWLINE
+                CALL STRING_DISPLAY
+                CALL CHARACTER_INPUT
+                JMP BINARY   
              
              ERROR2:
                 MOV DX, OFFSET MSG6
