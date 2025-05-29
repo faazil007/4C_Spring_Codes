@@ -1,4 +1,4 @@
-.MODEL SMALL
+                                                                                     .MODEL SMALL
 .STACK 100H
 ;-------------------------------------------------------------------------
 .DATA
@@ -22,10 +22,11 @@
      
      MSG1 DB 10,13, "ENTER FIRST DIGIT ::,$"
      MSG2 DB 10,13, "ENTER SECOND DIGIT::,$"
-     MSG3 DB 10,13, "ERROR! ENTER A VALID DIGIT CHARACTER::,$"
+     MSG3 DB 10,13, "ERROR! ENTER A VALID INTEGER ::,$"
      MSG4 DB 10,13, "RESULT OF CALCULATION::,$"
      MSG5 DB 10,13, "PRESS ANY KEY TO PROCEED!!!,$"
      MSG6 DB 10,13, "PLEASE ENTER A VALID CHARACTER TO PROCEED!!!,$"
+    
      
     ;-------------------------------------------------------------------- 
      
@@ -45,9 +46,6 @@
     MAIN PROC
         MOV AX,@DATA
         MOV DS,AX
-        
-        
-        
         START:
             MOV DX, OFFSET MENU1
             CALL STRING_DISPLAY
@@ -119,9 +117,11 @@
             
                 CMP BL,'5'
                 JE DECIMAL_CHECKING_QUOTIENT
-            
+                
                 CMP BL,'6'
-                JE START
+                JE START  
+                
+                JNE ERROR_DEC
           ;------------------------------------------------------------------   
             DECIMAL_ADDITION:
                 MOV DX, OFFSET NEWLINE
@@ -579,7 +579,7 @@
                 CMP BL,'6'
                 JE START
             
-                JNE ERROR
+                JNE ERROR_OCT
          ;----------------------------------------------------------------    
              OCTAL_ADDITION:
                 MOV DX, OFFSET NEWLINE
@@ -804,7 +804,7 @@
                 CMP BL,'6'
                 JE START
             
-                JNE ERROR
+                JNE ERROR_HEX
          ;----------------------------------------------------------------    
              HEXADECIMAL_ADDITION:
                 MOV DX, OFFSET NEWLINE
@@ -1000,65 +1000,8 @@
           ;--------------------------------------------------------------------;
           ;--------------------------------------------------------------------;      
           ;--------------------------------------------------------------------;
-   
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-          ;------------------------------------------------------------------------   
-             ERROR:
+          ;--------------------------------------------------------------------;   
+             ERROR_DEC:
                 MOV DX, OFFSET MSG3
                 CALL STRING_DISPLAY
                 MOV DX, OFFSET NEWLINE
@@ -1080,7 +1023,28 @@
                 MOV DX, OFFSET NEWLINE
                 CALL STRING_DISPLAY
                 CALL CHARACTER_INPUT
-                JMP BINARY   
+                JMP BINARY
+              
+             ERROR_OCT:
+                MOV DX, OFFSET MSG3
+                CALL STRING_DISPLAY
+                MOV DX, OFFSET NEWLINE
+                CALL STRING_DISPLAY
+                MOV DX, OFFSET MSG5
+                CALL STRING_DISPLAY
+                MOV DX, OFFSET NEWLINE
+                CALL STRING_DISPLAY
+                CALL CHARACTER_INPUT
+                JMP OCTAL      
+             
+             ERROR_HEX:
+                CALL STRING_DISPLAY
+                MOV DX, OFFSET MSG5
+                CALL STRING_DISPLAY
+                MOV DX, OFFSET NEWLINE
+                CALL STRING_DISPLAY
+                CALL CHARACTER_INPUT
+                JMP HEXADECIMAL      
              
              ERROR2:
                 MOV DX, OFFSET MSG6
@@ -1093,21 +1057,14 @@
                 CALL STRING_DISPLAY
                 CALL CHARACTER_INPUT
                 JMP START
-                   
-                
              JMP QUIT                
-             
              QUIT:
                 MOV AH,4CH
                 INT 21H    
-                   
     MAIN ENDP
-
 ;---------------------------------------------------------
 ; *************** ALL DECIMAL PROCEDURES *****************
 ;---------------------------------------------------------
-
-
 ;--------------------------------    
 ; 1st Proc    
 ;--------------------------------    
@@ -1157,7 +1114,8 @@
             JB INPUT_DEC2
             
             CMP AL,'9'
-            JA INPUT_DEC2
+            JA INPUT_DEC2 
+            
             
             SUB AL,'0'
             MOV AH,0
@@ -1167,24 +1125,16 @@
             POP BX
             ADD BX,AX
             JMP INPUT_DEC1
-            
-        
-        
         INPUT_DEC2:
             MOV AX,BX
-            
-        
         RET
-        
     DECIMAL_INPUT ENDP            
-    
 ;--------------------------------
 ; 5th Proc
 ;--------------------------------
     DECIMAL_OUTPUT PROC
         MOV BX,10
         MOV CX,0   
-        
         OUTPUT_DEC1:
             MOV DX,0
             DIV BX
@@ -1192,23 +1142,17 @@
             INC CX
             CMP AX,0
             JNZ OUTPUT_DEC1
-        
-            
         DISPLAY_DIGITS:
             POP DX
             ADD DX,'0'
             CALL CHARACTER_OUTPUT
             LOOP DISPLAY_DIGITS
-        
         RET
-        
      DECIMAL_OUTPUT ENDP
-    
 ;------------------------------------------------------------------------    
 ;---------------------------------------------------------
 ; *************** ALL BINARY PROCEDURES *****************
 ;---------------------------------------------------------
-
 ;--------------------------------
 ; 1ST Proc
 ;--------------------------------
@@ -1234,17 +1178,10 @@
             POP BX
             ADD BX,AX
             JMP INPUT_BIN1
-            
-        
-        
         INPUT_BIN2:
             MOV AX,BX
-            
-        
         RET
-        
     BINARY_INPUT ENDP            
-    
 ;--------------------------------
 ; 2ND Proc
 ;--------------------------------
@@ -1259,24 +1196,17 @@
             INC CX
             CMP AX,0
             JNZ OUTPUT_BIN1
-        
-            
         DISPLAY2_DIGITS:
             POP DX
             ADD DX,'0'
             CALL CHARACTER_OUTPUT
             LOOP DISPLAY2_DIGITS
-        
         RET
-        
      BINARY_OUTPUT ENDP
-    
 ;------------------------------------------------------------------------              
-        
 ;---------------------------------------------------------
 ; *************** ALL OCTAL PROCEDURES *****************
 ;---------------------------------------------------------
-
 ;--------------------------------
 ; 1ST Proc
 ;--------------------------------
@@ -1302,15 +1232,10 @@
             POP BX
             ADD BX,AX
             JMP INPUT_OCT1
-        
         INPUT_OCT2:
             MOV AX,BX
-        
         RET
-        
      OCTAL_INPUT ENDP            
-
-
 ;--------------------------------
 ; 2ND Proc
 ;--------------------------------
@@ -1344,12 +1269,9 @@
 ;---------------------------------------------------------
 ; 1ST PROC
 ;---------------------------------------------------------    
-    
-    
      HEXADECIMAL_INPUT PROC
         MOV BX,0
         MOV CX,16
-
      INPUT_HEX1:
         CALL CHARACTER_INPUT
         MOV AL,TEMPORARY
@@ -1372,10 +1294,8 @@
         SUB AL,'A'
         ADD AL,10
         JMP CONTINUE_INPUT
-
      IS_DECIMAL:
         SUB AL,'0'
-
      CONTINUE_INPUT:
         MOV AH,0
         PUSH AX
@@ -1384,15 +1304,10 @@
         POP BX
         ADD BX,AX
         JMP INPUT_HEX1
-
      INPUT_HEX2:
         MOV AX,BX
-
         RET
-
      HEXADECIMAL_INPUT ENDP
-
-
 ;--------------------------------
 ; 2ND Proc
 ;--------------------------------
@@ -1407,22 +1322,17 @@
         INC CX
         CMP AX,0
         JNZ OUTPUT_HEX1
-
      DISPLAY_HEX_DIGITS:
         POP DX
         CMP DX,9
         JBE IS_NUMERIC
         ADD DX,'A'-10
         JMP PRINT_HEX
-
      IS_NUMERIC:
         ADD DX,'0'
-
      PRINT_HEX:
         CALL CHARACTER_OUTPUT
         LOOP DISPLAY_HEX_DIGITS
-
         RET
-
      HEXADECIMAL_OUTPUT ENDP
    ;-----------------------------------------------------------------------------
