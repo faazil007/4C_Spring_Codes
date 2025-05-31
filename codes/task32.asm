@@ -1,8 +1,8 @@
-.MODEL SMALL
+                                         .MODEL SMALL
 .STACK 100H
 
 .DATA
-    MY_TEXT        DB ' I AM A PROUD PAKISTANI$', 0
+    MY_TEXT        DB ' I AM A PROUD PAKISTANII$', 0
     SHOW_VOWEL     DB 'VOWELS: $'
     SHOW_CONSONANT DB 13, 10, 'CONSONANTS: $'
     COUNT_VOWELS   DW 0
@@ -62,53 +62,48 @@ MOVE_NEXT:
 
 DISPLAY_RESULTS:
     MOV DX, OFFSET SHOW_VOWEL
-    CALL PRINT_STR
+    MOV AH,09
+    INT 21H
 
     MOV AX, COUNT_VOWELS
-    CALL PRINT_NUM
+    CALL DECIMAL_OUTPUT
 
     MOV DX, OFFSET SHOW_CONSONANT
-    CALL PRINT_STR
+    MOV AH,09 
+    INT 21H
 
     MOV AX, COUNT_CONS
-    CALL PRINT_NUM
+    CALL DECIMAL_OUTPUT
 
     MOV AH, 4CH
     INT 21H
 
+DECIMAL_OUTPUT PROC
+    MOV BX,10
+    MOV CX,0
+        OUTDEC_1:
+            MOV DX,0
+            DIV BX
+            PUSH DX
+            INC CX
+            CMP AX,0
+            JNZ OUTDEC_1
+            
+            DISPLAY_DIGITS:
+                POP DX
+                ADD DX,'0'
+                CALL CHARACTER_OUTPUT
+                LOOP DISPLAY_DIGITS
+     
+     RET
+DECIMAL_OUTPUT ENDP     
+                
+    
 
-PRINT_STR:
-    MOV AH, 09H
+CHARACTER_OUTPUT PROC
+    MOV AH,2
     INT 21H
+    
     RET
-
-
-PRINT_NUM:
-    PUSH AX
-    PUSH BX
-    PUSH CX
-    PUSH DX
-
-    XOR CX, CX
-    MOV BX, 10
-
-NUM_TO_ASCII:
-    XOR DX, DX
-    DIV BX
-    PUSH DX
-    INC CX
-    TEST AX, AX
-    JNZ NUM_TO_ASCII
-
-PRINT_DIGITS:
-    POP DX
-    ADD DL, '0'
-    MOV AH, 02H
-    INT 21H
-    LOOP PRINT_DIGITS
-
-    POP DX
-    POP CX
-    POP BX
-    POP AX
-    RET
+    
+CHARACTER_OUTPUT ENDP    
