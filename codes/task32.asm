@@ -95,7 +95,7 @@ DECIMAL_OUTPUT PROC
                 CALL CHARACTER_OUTPUT
                 LOOP DISPLAY_DIGITS
      
-     RET
+D     RET
 DECIMAL_OUTPUT ENDP     
                 
     
